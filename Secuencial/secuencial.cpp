@@ -15,12 +15,12 @@ int main(int argc, char *argv[]){
     }
 
 
-         // Lee parámetros de entrada
-       string inputImage = argv[1];
-        string outputImage = argv[2];
+	// Lee parámetros de entrada
+       	string inputImage = argv[1];
+       	string outputImage = argv[2];
 
 	// Lee la imagen en color
-	Mat image =imread("imageacolor.jpg", IMREAD_COLOR);
+	Mat image =imread(inputImage, IMREAD_COLOR);
 
 	if(image.empty()) {
 		cerr << "Error al cargar la imagen." << endl;
@@ -28,11 +28,11 @@ int main(int argc, char *argv[]){
 	}
 
         // Mostrar información sobre la imagen
-    cout << "Loading image..." << endl;
-    cout << "Rows (height): " << image.rows << " Cols (width): " << image.cols << endl;
+    	cout << "Loading image..." << endl;
+    	cout << "Rows (height): " << image.rows << " Cols (width): " << image.cols << endl;
 
 	 // Inicia el cronómetro
-    auto start = high_resolution_clock::now();
+    	auto start = high_resolution_clock::now();
 
 	// Convertir a escala de grises (metodo de luminosidad)
 	Mat grayImage;
@@ -46,8 +46,8 @@ int main(int argc, char *argv[]){
 		cout << endl;
 	}
 	  // Detiene el cronómetro
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<microseconds>(stop - start);
+    	auto stop = high_resolution_clock::now();
+    	auto duration = duration_cast<microseconds>(stop - start);
 
    	 // Imprime el tiempo de ejecución en segundos
    	 cout << "Total time spent in seconds is " << duration.count() / 1e6 << endl;
