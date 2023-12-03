@@ -1,0 +1,11 @@
+CC = g++
+CFLAGS = -std=c++11 -Wall -fopenmp
+LIBS = `pkg-config --cflags --libs opencv4`
+
+all: paralelo_openmp
+
+paralelo_openmp: paralelo_openmp.cpp
+	$(CC) $(CFLAGS) -o paralelo_openmp paralelo_openmp.cpp $(LIBS)
+
+clean:
+	rm -f paralelo_openmp
