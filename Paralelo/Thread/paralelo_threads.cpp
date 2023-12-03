@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
         return -1;
     }
     // Muestra información sobre la imagen
-    cout << "Loading image..." << endl;
+    cout << "Cargando imagen..." << endl;
     cout << "Rows (height): " << image.rows << " Cols (width): " << image.cols << endl;
 
     // Crea una matriz en escala de grises del mismo tamaño que la imagen a color
@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
     vector<thread> threads;
     int rowsPerThread = image.rows / numThreads;
 
-    cout << "Start conversion..." << endl;
+    cout << "Empieza la conversión..." << endl;
     for (int i = 0; i < numThreads; ++i) {
         int startRow = i * rowsPerThread;
         int endRow = (i == numThreads - 1) ? image.rows : (i + 1) * rowsPerThread;
@@ -65,12 +65,12 @@ int main(int argc, char *argv[]) {
 
     // Detiene el cronómetro
     auto stop = high_resolution_clock::now();
-    cout << "End conversion..." << endl;
+    cout << "Se detiene la conversión..." << endl;
 
     imwrite(outputImage, grayImage);
 
     auto duration = duration_cast<microseconds>(stop - start);
-    cout << "Total time spent in seconds is " << duration.count() / 1e6 << endl;
+    cout << "Tiempo de ejecución: " << duration.count() / 1e6 << " segundos" << endl;
 
     return 0;
 }
