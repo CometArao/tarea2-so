@@ -9,9 +9,9 @@ using namespace std::chrono;
 
 int main(int argc, char *argv[]){
 
- if (argc != 3) {
-        cerr << "Uso: " << argv[0] << " <imagen_color> <imagen_gris>" << endl;
-        return -1;
+ 	if (argc != 3) {
+        	cerr << "Uso: " << argv[0] << " <imagen_color> <imagen_gris>" << endl;
+        	return -1;
     }
 
 
@@ -28,11 +28,12 @@ int main(int argc, char *argv[]){
 	}
 
         // Mostrar información sobre la imagen
-    	cout << "Loading image..." << endl;
+    	cout << "Cargando imagen..." << endl;
     	cout << "Rows (height): " << image.rows << " Cols (width): " << image.cols << endl;
 
 	 // Inicia el cronómetro
     	auto start = high_resolution_clock::now();
+	cout << "Empieza la conversión..." << endl;
 
 	// Convertir a escala de grises (metodo de luminosidad)
 	Mat grayImage;
@@ -48,18 +49,13 @@ int main(int argc, char *argv[]){
 	  // Detiene el cronómetro
     	auto stop = high_resolution_clock::now();
     	auto duration = duration_cast<microseconds>(stop - start);
-
-   	 // Imprime el tiempo de ejecución en segundos
-   	 cout << "Total time spent in seconds is " << duration.count() / 1e6 << endl;
+	cout << "Se detiene la conversión..." << endl;
 
         // Guarda la imagen en escala de grises
         imwrite(outputImage, grayImage);
 
-	  // Imprime los detalles de salida
-       cout << "Resultado guardado en: " << outputImage << endl;
-       cout << "Tiempo de ejecución: " << duration.count() / 1e6 << " segundos" << endl;
-
-
+	// Imprime los detalles de salida
+       	cout << "Tiempo de ejecución: " << duration.count() / 1e6 << " segundos" << endl;
 
 	return 0;
 }

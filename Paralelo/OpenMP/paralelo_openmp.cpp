@@ -10,11 +10,11 @@ using namespace std::chrono;
 int main(int argc, char *argv[]){
 
 	if (argc != 4) {
-        cerr << "Uso: " << argv[0] << " <imagen_color> <imagen_gris> <num_hebras>" << endl;
-        return -1;
-    }
+        	cerr << "Uso: " << argv[0] << " <imagen_color> <imagen_gris> <num_hebras>" << endl;
+        	return -1;
+    	}
 
-	    // Leer parámetros de entrada
+	// Leer parámetros de entrada
     	string inputImage = argv[1];
     	string outputImage = argv[2];
     	int numThreads = stoi(argv[3]);
@@ -28,8 +28,8 @@ int main(int argc, char *argv[]){
 	}
 
 
-    // Mostrar información sobre la imagen
-        cout << "Loading image..." << endl;
+    	// Mostrar información sobre la imagen
+        cout << "Cargando imagen..." << endl;
         cout << "Rows (height): " << image.rows << " Cols (width): " << image.cols << endl;
 
 
@@ -37,10 +37,11 @@ int main(int argc, char *argv[]){
 	Mat grayImage(image.rows, image.cols, CV_8UC1);
 
 
-	 // Inicia el cronómetro
-    auto start = high_resolution_clock::now();
+	// Inicia el cronómetro
+    	auto start = high_resolution_clock::now();
 
- 	 // Utilizando OpenMP
+	cout << "Empieza la conversión..." << endl;
+ 	// Utilizando OpenMP
 	#pragma omp parallel for num_threads(numThreads)
 	for (int r = 0; r < image.rows; r++) {
 		for (int c = 0; c < image.cols; c++) {
@@ -50,14 +51,15 @@ int main(int argc, char *argv[]){
 	}
 
 	// Detiene el cronómetro
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<microseconds>(stop - start);
+    	auto stop = high_resolution_clock::now();
+    	auto duration = duration_cast<microseconds>(stop - start);
 
-       // Imprimw el tiempo de ejecución en segundos
-     cout << "\nTiempo de ejecución: " << duration.count() / 1e6 << " segundos" << endl;
+	cout << "Se detiene la conversión..." << endl;
+       	// Imprime el tiempo de ejecución en segundos
+     	cout << "\nTiempo de ejecución: " << duration.count() / 1e6 << " segundos" << endl;
 
-      // Guarda la imagen en escala de grises
-    imwrite(outputImage, grayImage);
+      	// Guarda la imagen en escala de grises
+    	imwrite(outputImage, grayImage);
 
 
 	return 0;
