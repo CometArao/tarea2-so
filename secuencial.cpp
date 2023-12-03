@@ -4,6 +4,7 @@
 using namespace cv;
 using namespace std;
 
+
 int main() {
 	// Ler la imagen en color
 	Mat image =imread("imageacolor.jpg", IMREAD_COLOR);
